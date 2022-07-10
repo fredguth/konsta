@@ -61,7 +61,8 @@
   export let touchRipple = true;
 
   export let onClick = undefined;
-
+  export let onMousedown = undefined;
+  export let onTouchstart = undefined;
   const rippleEl = { current: null };
 
   let theme;
@@ -146,6 +147,9 @@
     this={component}
     class={cls(c.divider, className)}
     on:click={onClick}
+    on:mousedown={onMousedown}
+    on:touchstart={onTouchstart}
+    {...$$restProps}
   >
     {title}
     <slot name="title" />
@@ -155,8 +159,10 @@
   <svelte:element
     this={component}
     class={c.base}
-    {...$$restProps}
     on:click={onClick}
+    on:mousedown={onMousedown}
+    on:touchstart={onTouchstart}
+    {...$$restProps}
   >
     {#if typeof ItemContentComponent === 'string'}
       <svelte:element
